@@ -1,0 +1,36 @@
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        vector<int>e,o;
+        int i=0;
+        ListNode*s=head;
+        while(s!=NULL)
+        {
+            if(i==0)
+            {
+                e.push_back(s->val);
+                i=1;
+            }
+            else
+            {
+                o.push_back(s->val);
+                i=0;
+            }
+            s = s->next;
+        }
+        s = head;
+        
+       int n = e.size(),m=o.size();
+        for(i=0;i<n;i++)
+        {
+            s->val = e[i];
+            s = s->next;
+        }
+        for(i=0;i<m;i++)
+        {
+            s->val = o[i];
+            s = s->next;
+        }
+        return head;
+    }
+};
