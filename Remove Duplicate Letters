@@ -1,0 +1,49 @@
+class Solution {
+public:
+    string removeDuplicateLetters(string s) {
+        vector<int> f(26,0);
+        
+        for(int i=0;i<s.size();i++)
+            f[s[i] - 'a']++;
+        
+        string a="";
+        stack<char>st;
+        for(int i=0;i<s.size();i++)
+        {
+            if(st.size()!=0 && st.top()>s[i])
+            {
+                if(f[st.top() - 'a']>1)
+                {
+                    while(st.size()!=0 && f[st.top() - 'a']>1)
+                    { f[st.top() - 'a']--;
+                      cout<<st.top()<<" ";
+                    st.pop();
+                    
+                    }
+                }
+                //cout<<s[i]<<" ";
+            }
+            st.push(s[i]);
+        }
+        while(!st.empty())
+        {
+            
+                a = st.top() + a;
+               
+            st.pop();
+        }
+        string ans ="";
+        for(int i=0;i<a.size();i++)
+        {
+            if(f[a[i] - 'a']!=0)
+            {
+                f[a[i] - 'a']=0;
+                ans += a[i];
+            }
+           
+                
+        }
+        return ans;
+        
+    }
+};
