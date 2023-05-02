@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<int> findAnagrams(string s, string p) {
+      
+        int n = s.size() , k = p.size();
+        vector<int>ans,fp(26,0),f(26,0);
+        for(int i=0;i<k;i++)
+            fp[p[i] - 'a']++;
+        
+        int j=0;
+        for(int i=0;i<n;i++)
+        {
+            if(i>= k)
+            {
+                int flag =0;
+                for(int t=0;t<26;t++)
+                {
+                    
+                    if(fp[t] != f[t])
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }
+                
+                if(flag==0)
+                    ans.push_back(j);
+                
+                    f[s[j]-'a']--;
+                j++;
+                
+            }
+             f[s[i] - 'a']++;
+        }
+         int flag =0;
+                for(int t=0;t<26;t++)
+                {
+                    
+                    if(fp[t] != f[t])
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }
+               
+                if(flag==0)
+                    ans.push_back(j);
+        return ans;
+    }
+};
